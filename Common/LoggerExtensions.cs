@@ -16,9 +16,14 @@ namespace DatadogKubernetes
                 .ForContext("LineNumber", sourceLineNumber);
         }
 
-        public static ILogger Logger()
+        public static ILogger ConsoleLogger()
         {
             return new LoggerConfiguration().WriteTo.Console(new JsonFormatter()).CreateLogger();
+        }
+
+        public static ILogger FileLogger()
+        {
+            return new LoggerConfiguration().WriteTo.File("./var/log/containers/application.log").CreateLogger();
         }
     }
 }

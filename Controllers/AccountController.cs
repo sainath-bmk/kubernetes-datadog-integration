@@ -32,11 +32,11 @@ namespace DatadogKubernetes.Controllers
              new AccountDetails{ UserId = 1352 , AccountId = Guid.NewGuid().ToString() , Balance=95400 }
             };
 
-            Serilog.ILogger Logger = LoggerExtensions.Logger();
+            Serilog.ILogger Logger = LoggerExtensions.FileLogger();
 
             foreach (var account in accountDetails)
             {
-                Logger.Information("account details {@account}", account);
+                Logger.Information("account details for the user {@account}", account);
             }
 
             return accountDetails.ToArray();
