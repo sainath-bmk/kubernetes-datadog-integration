@@ -8,7 +8,7 @@ metadata:
     component: netcore-app
 spec:
   containers:
-    - image: jhacontainer.azurecr.io/webapi5:v1
+    - image: jhacontainer.azurecr.io/webapi7:v1
       name: webapi
       ports:
         - containerPort: 80

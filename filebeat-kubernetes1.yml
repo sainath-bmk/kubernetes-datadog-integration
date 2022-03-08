@@ -1,4 +1,4 @@
-﻿---
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -36,8 +36,11 @@ data:
     processors:
       - add_cloud_metadata:
       - add_host_metadata:
-    
-    output.console:
+
+    cloud.id: ${ELASTIC_CLOUD_ID}
+    cloud.auth: ${ELASTIC_CLOUD_AUTH}
+
+    output.Console:
       pretty: true
       
 ---

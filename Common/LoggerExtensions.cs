@@ -1,6 +1,7 @@
 ﻿
 using Serilog;
 using Serilog.Formatting.Json;
+using System.IO;
 using System.Runtime.CompilerServices;
 
 namespace DatadogKubernetes
@@ -23,7 +24,8 @@ namespace DatadogKubernetes
 
         public static ILogger FileLogger()
         {
-            return new LoggerConfiguration().WriteTo.File("./var/log/containers/application.log").CreateLogger();
+            return new LoggerConfiguration().WriteTo.File(new JsonFormatter(), $@"{Directory.GetCurrentDirectory()}\var\log\containers\application.log").CreateLogger();
         }
     }
+   
 }
