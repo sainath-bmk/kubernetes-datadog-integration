@@ -11,7 +11,7 @@ data:
     filebeat.inputs:
     - type: container
       paths:
-        - /var/log/containers/application.log
+        - /var/log/containers/*.log
       encoding: plain
       scan_frequency: 1s
       enable: true
@@ -40,8 +40,8 @@ data:
     cloud.id: ${ELASTIC_CLOUD_ID}
     cloud.auth: ${ELASTIC_CLOUD_AUTH}
 
-    output.Console:
-      pretty: true
+    output.logstash:
+      hosts: ["10.0.99.189:5044"]
       
 ---
 apiVersion: apps/v1
