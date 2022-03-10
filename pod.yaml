@@ -8,16 +8,10 @@ metadata:
     component: netcore-app
 spec:
   containers:
-    - image: jhacontainer.azurecr.io/webapi8:v2
+    - image: jhacontainer.azurecr.io/webapi8:v3
       name: webapi
       ports:
         - containerPort: 80
-      volumeMounts:
-        - name: varcontainerlogs
-          mountPath: /var/log/containers
-  volumes:
-    - name: varcontainerlogs
-      hostPath:
-        path: /var/log/containers
+     
      
         

@@ -38,8 +38,8 @@ data:
     cloud.id: ${ELASTIC_CLOUD_ID}
     cloud.auth: ${ELASTIC_CLOUD_AUTH}
 
-    output.console:
-      pretty: true
+    output.logstash:
+      hosts: ["10.0.250.216:5044"]
 
     #output.elasticsearch:
     #  hosts: ['${ELASTICSEARCH_HOST:elasticsearch}:${ELASTICSEARCH_PORT:9200}']
