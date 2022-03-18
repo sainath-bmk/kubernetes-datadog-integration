@@ -39,7 +39,7 @@ data:
     cloud.auth: ${ELASTIC_CLOUD_AUTH}
 
     output.logstash:
-      hosts: ["10.0.17.91:5044"]
+      hosts: ["10.0.94.68:5044"]
 
     #output.elasticsearch:
     #  hosts: ['${ELASTICSEARCH_HOST:elasticsearch}:${ELASTICSEARCH_PORT:9200}']

@@ -27,6 +27,12 @@ namespace DatadogKubernetes
             //return new LoggerConfiguration().WriteTo.File(new JsonFormatter(), $@"{Directory.GetCurrentDirectory()}\var\log\containers\application.log").CreateLogger();
             return new LoggerConfiguration().WriteTo.File("/var/log/containers/application.log").CreateLogger();
         }
+
+        public static ILogger DatadogLogger()
+        {
+            //return new LoggerConfiguration().WriteTo.File(new JsonFormatter(), $@"{Directory.GetCurrentDirectory()}\var\log\containers\application.log").CreateLogger();
+            return new LoggerConfiguration().WriteTo.DatadogLogs("81b5ac49dd9d1ee9fc549734b6cf59a8", "webabi-datadog", "webabi-datadog","host1").CreateLogger();
+        }
     }
    
 }
