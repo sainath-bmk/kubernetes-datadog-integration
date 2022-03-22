@@ -24,22 +24,80 @@ namespace DatadogKubernetes.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<AccountDetails> Get()
+        public IEnumerable<JhaLog> Get()
         {
-             var accountDetails = new List<AccountDetails> { 
-             new AccountDetails{ UserId = 1350 , AccountId = Guid.NewGuid().ToString() , Balance=75400 },
-             new AccountDetails{ UserId = 1351 , AccountId = Guid.NewGuid().ToString() , Balance=75900 },
-             new AccountDetails{ UserId = 1352 , AccountId = Guid.NewGuid().ToString() , Balance=95400 }
+            var currentTime = DateTime.Now.ToString();
+            var guid = Guid.NewGuid().ToString();
+
+            var jhaLogCollection = new List<JhaLog>
+            {
+                new JhaLog { Id="1" , ApplicationName="WebApp" , BusinessCorrelationId= guid,
+                Category="Cat1" , ClientTimeZone = currentTime , CorrelationId =guid,
+                EventDateTime = currentTime , IPAddress="10.1.9.102" , Message="Sample message" ,MessageCode="MSG01",
+                MessageFormat="Form1" , MessageType="Type1" , ProcessId = "1" , ProductName = "Product1" , RequestId = "RequestId",
+                ServerTimeZone = currentTime,ThreadId = guid,WorkflowCorrelationId = guid
+                }
             };
 
-            Serilog.ILogger Logger = LoggerExtensions.DatadogLogger();
-
-            foreach (var account in accountDetails)
+            for (int k = 0; k < 2; k++)
             {
-                Logger.Information("account details for the user {@account}", account);
+                for (int i = 0; i < 5000; i++)
+                {
+                    jhaLogCollection.Add(new JhaLog
+                    {
+                        Id = "ID"+k+i,
+                        ApplicationName = "WebApp",
+                        BusinessCorrelationId = guid,
+                        Category = "Cat1",
+                        ClientTimeZone = currentTime,
+                        CorrelationId = guid,
+                        EventDateTime = currentTime,
+                        IPAddress = "10.1.9.102",
+                        Message = "Sample message",
+                        MessageCode = "MSG01",
+                        MessageFormat = "Form1",
+                        MessageType = "Type1",
+                        ProcessId = "ID" + k + i,
+                        ProductName = "Product1",
+                        RequestId = "RequestId",
+                        ServerTimeZone = currentTime,
+                        ThreadId = guid,
+                        WorkflowCorrelationId = guid
+                    });
+                }
             }
 
-            return accountDetails.ToArray();
+            jhaLogCollection.Add(new JhaLog
+            {
+                Id = "2",
+                ApplicationName = "WebApp",
+                BusinessCorrelationId = guid,
+                Category = "Cat1",
+                ClientTimeZone = currentTime,
+                CorrelationId = guid,
+                EventDateTime = currentTime,
+                IPAddress = "10.1.9.102",
+                Message = "Sample message",
+                MessageCode = "MSG01",
+                MessageFormat = "Form1",
+                MessageType = "Type1",
+                ProcessId = "1",
+                ProductName = "Product1",
+                RequestId = "RequestId",
+                ServerTimeZone = currentTime,
+                ThreadId = guid,
+                WorkflowCorrelationId = guid
+            });
+
+
+            Serilog.ILogger Logger = LoggerExtensions.ConsoleLogger();
+
+            foreach (var log in jhaLogCollection)
+            {
+                Logger.Information("transaction details {@log}", log);
+            }
+
+            return jhaLogCollection.ToArray();
         }
     }
 }

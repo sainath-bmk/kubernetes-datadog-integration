@@ -3,15 +3,13 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: dotnet-aks
-  name: dotnet-aks
+    app: webapi
+  name: webapi
 spec:
   ports:
     - port: 8080
       protocol: TCP
       targetPort: 80
   selector:
-    app: dotnet-aks
-    component: netcore-app
-    tier: frontend
+    run: webapi
   type: LoadBalancer

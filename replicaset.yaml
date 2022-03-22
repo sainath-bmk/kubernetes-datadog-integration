@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapi
+spec:
+  selector:
+    matchLabels:
+      run: webapi
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        run: webapi
+    spec:
+      containers:
+      - name: webapi
+        image: jhacontainer.azurecr.io/webapi10:v4
+        ports:
+        - containerPort: 80
