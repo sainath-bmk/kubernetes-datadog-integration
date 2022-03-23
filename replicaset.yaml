@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       run: webapi
-  replicas: 3
+  replicas: 4
   template:
     metadata:
       labels:
@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: webapi
-        image: jhacontainer.azurecr.io/webapi10:v4
+        image: jhacontainer.azurecr.io/webapi10:v5
         ports:
         - containerPort: 80

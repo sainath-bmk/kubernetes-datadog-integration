@@ -29,6 +29,8 @@ namespace DatadogKubernetes.Controllers
             var currentTime = DateTime.Now.ToString();
             var guid = Guid.NewGuid().ToString();
 
+            var outputCollection = new List<JhaLog>();
+
             var jhaLogCollection = new List<JhaLog>
             {
                 new JhaLog { Id="1" , ApplicationName="WebApp" , BusinessCorrelationId= guid,
@@ -97,7 +99,7 @@ namespace DatadogKubernetes.Controllers
                 Logger.Information("transaction details {@log}", log);
             }
 
-            return jhaLogCollection.ToArray();
+            return outputCollection.ToArray();
         }
     }
 }
