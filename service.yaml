@@ -4,6 +4,7 @@ kind: Service
 metadata:
   labels:
     app: dotnet-aks
+    component: netcore-app
   name: dotnet-aks
 spec:
   ports:
@@ -13,5 +14,4 @@ spec:
   selector:
     app: dotnet-aks
     component: netcore-app
-    tier: frontend
   type: LoadBalancer
