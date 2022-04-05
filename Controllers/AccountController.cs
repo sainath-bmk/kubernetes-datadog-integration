@@ -26,6 +26,28 @@ namespace DatadogKubernetes.Controllers
         [HttpGet]
         public IEnumerable<JhaLog> Get()
         {
+            var outputCollection = new List<JhaLog>();
+            TestLogMessage();
+            return outputCollection.ToArray();
+        }
+
+        public void TestLogMessage()
+        {
+            var testMessage = GetTestMessage();
+            for (int i = 0; i < 10000; i++)
+            {
+                Serilog.ILogger Logger = LoggerExtensions.ConsoleLogger();
+                Logger.Information(testMessage);
+            }
+        }
+
+        public string GetTestMessage() 
+        {
+            return System.IO.File.ReadAllText("LogMessage.txt");
+        }
+
+        public void TestLogMessage1() 
+        {
             var currentTime = DateTime.Now.ToString();
             var guid = Guid.NewGuid().ToString();
 
@@ -47,7 +69,7 @@ namespace DatadogKubernetes.Controllers
                 {
                     jhaLogCollection.Add(new JhaLog
                     {
-                        Id = "ID"+k+i,
+                        Id = "ID" + k + i,
                         ApplicationName = "WebApp",
                         BusinessCorrelationId = guid,
                         Category = "Cat1",
@@ -98,8 +120,6 @@ namespace DatadogKubernetes.Controllers
             {
                 Logger.Information("transaction details {@log}", log);
             }
-
-            return outputCollection.ToArray();
         }
     }
 }
