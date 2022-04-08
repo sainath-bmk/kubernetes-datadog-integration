@@ -95,6 +95,8 @@ spec:
               value: "/var/run/datadog/dsd.socket"
             - name: DD_EXPVAR_PORT
               value: "6000"
+            - name: DD_LOGS_CONFIG_BATCH_MAX_CONCURRENT_SEND
+              value: "4"
           volumeMounts:
             - name: installinfo
               subPath: install_info

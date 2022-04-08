@@ -43,7 +43,8 @@ namespace DatadogKubernetes.Controllers
 
         public string GetTestMessage() 
         {
-            return System.IO.File.ReadAllText("wwwroot/LogMessage20KB.txt");
+            var size = Request.Query["size"].ToString();
+            return System.IO.File.ReadAllText("wwwroot/"+ "LogMessage"+ size+".txt");
         }
 
         public void TestLogMessage1() 
